@@ -6,5 +6,4 @@ import com.conference.conference.entity.Session;
 
 public interface SessionService {
     public Session createSession(Session session);
-    public void addAttendeeToSession(AddAttendeeRequest request);
 }

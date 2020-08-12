@@ -3,6 +3,7 @@ package com.conference.conference.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,9 @@ public class Session {
 
     @ManyToMany(mappedBy="sessions")
     public Set<Attendee> attendeeList;
+
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    Set<AttendeeSession> attendeeSessions;
 
     @Column(length = 2000)
     private String location;

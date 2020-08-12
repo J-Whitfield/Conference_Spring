@@ -4,6 +4,7 @@ import com.conference.conference.DTO.AddAttendeeRequest;
 import com.conference.conference.entity.Attendee;
 import com.conference.conference.entity.Session;
 import com.conference.conference.service.AttendeeServiceImp;
+import com.conference.conference.service.AttendeeSessionServiceImp;
 import com.conference.conference.service.SessionServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,6 +23,9 @@ public class Controller {
     @Autowired
     private SessionServiceImp sessionServiceImp;
 
+    @Autowired
+    private AttendeeSessionServiceImp attendeeSessionServiceImp;
+
     @PostMapping(path= "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Attendee registerAttendee(@RequestBody Attendee attendee){
@@ -39,7 +43,7 @@ public class Controller {
     @PostMapping(path= "/addAttendee", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public AddAttendeeRequest addAttendee(@RequestBody AddAttendeeRequest request){
-        sessionServiceImp.addAttendeeToSession(request);
+        attendeeSessionServiceImp.addAttendeeToSession(request);
         return request;
     }
 

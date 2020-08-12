@@ -1,22 +1,54 @@
 package com.conference.conference.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
+
 
 @Entity
-@IdClass(AttendeeSessionId.class)
-public class AttendeeSession {
+public class AttendeeSession implements Serializable {
+
     @Id
-    @Column(name="attendee_id")
-    private long attendeeId;
-    @Id
-    @Column(name="session_id")
-    private long SessionId;
-    @Column("IS_PRESENTER")
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Column(name="attendee_session_id")
+    private String id;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attendee_id")
+    Attendee attendee;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "session_id")
+    Session session;
+
+
     private boolean isPresenter;
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name="attendee_id", referencedColumnName="attendee_id")
-    private Employee employee;
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name="session_id", referencedColumnName="session_id")
-    private Project project;
+
+    public AttendeeSession() {
+    }
+
+    public AttendeeSession(Attendee attendee, Session session) {
+        this.session = session;
+        this.attendee = attendee;
+    }
+
+    public Attendee getAttendee() {
+        return attendee;
+    }
+
+    public void setAttendee(Attendee attendee) {
+        this.attendee = attendee;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 }
