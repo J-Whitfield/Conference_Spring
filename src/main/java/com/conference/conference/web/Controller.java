@@ -2,15 +2,19 @@ package com.conference.conference.web;
 
 import com.conference.conference.DTO.AddAttendeeRequest;
 import com.conference.conference.entity.Attendee;
+import com.conference.conference.entity.AttendeeSession;
 import com.conference.conference.entity.Session;
 import com.conference.conference.service.AttendeeServiceImp;
 import com.conference.conference.service.AttendeeSessionServiceImp;
 import com.conference.conference.service.SessionServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.List;
 
 @RestController
 @EnableWebMvc
@@ -45,6 +49,13 @@ public class Controller {
     public AddAttendeeRequest addAttendee(@RequestBody AddAttendeeRequest request){
         attendeeSessionServiceImp.addAttendeeToSession(request);
         return request;
+    }
+
+    @GetMapping(path = "/SessionAttendees/{id}")
+    @ResponseBody
+    public List<AttendeeSession> getSessionAttendess(@PathVariable("id") String id){
+        List<AttendeeSession> list = attendeeSessionServiceImp.getSessionAttendees(id);
+        return list;
     }
 
 }

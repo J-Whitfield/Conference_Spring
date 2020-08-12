@@ -1,15 +1,17 @@
 package com.conference.conference.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
-public class Attendee {
+public class Attendee implements Serializable {
 
     @Id
     @GeneratedValue(generator="system-uuid")
@@ -20,18 +22,8 @@ public class Attendee {
     @Column(name = "attendee_name", nullable = false)
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "User_Sessions",
-            joinColumns = { @JoinColumn(name = "attendee_id") },
-            inverseJoinColumns = { @JoinColumn(name = "session_id") }
-    )
-    @Column(name="name")
-    public Set<Session> sessions;
-
-
-
-    @OneToMany(mappedBy = "attendee", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "attendee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<AttendeeSession> attendeeSessions;
 
     @Column(length = 2000)
@@ -74,14 +66,6 @@ public class Attendee {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Session> getSessionList() {
-        return sessions;
-    }
-
-    public void setSessionList(Set<Session> sessionList) {
-        this.sessions = sessions;
     }
 
     public String getTitle() {

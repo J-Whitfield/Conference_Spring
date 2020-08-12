@@ -1,42 +1,38 @@
 package com.conference.conference.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Session {
+public class Session implements Serializable {
 
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Column(name="session_id")
     private String id;
 
     @Column(name = "presenter", nullable = false)
     private String presenter;
 
-    @ManyToMany(mappedBy="sessions")
-    public Set<Attendee> attendeeList;
-
-    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Set<AttendeeSession> attendeeSessions;
 
     @Column(length = 2000)
     private String location;
+
     private String time;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private String name;
+    @Column(name = "presentation_name", nullable = false)
+    private String nameOfPresentation;
 
     public String getId() {
         return id;
@@ -54,13 +50,6 @@ public class Session {
         this.presenter = presenter;
     }
 
-    public Set<Attendee> getAttendeeList() {
-        return attendeeList;
-    }
-
-    public void setAttendeeList(Set<Attendee> attendeeList) {
-        this.attendeeList = attendeeList;
-    }
 
     public String getLocation() {
         return location;
@@ -76,5 +65,13 @@ public class Session {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getNameOfPresentation() {
+        return nameOfPresentation;
+    }
+
+    public void setNameOfPresentation(String nameOfPresentation) {
+        this.nameOfPresentation = nameOfPresentation;
     }
 }

@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface SessionRepository extends CrudRepository<Session, Long> {
-    List<Session> findByNameAndPresenter(String name, String presenter);
+    List<Session> findByNameOfPresentationAndPresenter(String nameOfPresentation, String presenter);
 
 }

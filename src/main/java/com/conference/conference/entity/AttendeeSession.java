@@ -1,5 +1,6 @@
 package com.conference.conference.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,16 +17,22 @@ public class AttendeeSession implements Serializable {
     private String id;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attendee_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumns({
+            @JoinColumn(name="attendant_id", referencedColumnName="attendee_id"),
+            @JoinColumn(name="attendant_name", referencedColumnName="attendee_name")
+    })
     Attendee attendee;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id")
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumns({
+            @JoinColumn(name="session_tracking_id", referencedColumnName="session_id"),
+            @JoinColumn(name="name", referencedColumnName="presentation_name")
+    })
     Session session;
 
-
+    @JsonIgnore
     private boolean isPresenter;
 
     public AttendeeSession() {
