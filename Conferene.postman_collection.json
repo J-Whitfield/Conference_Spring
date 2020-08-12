@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "fb290ce4-2524-4498-80e3-8e3396597e12",
+		"name": "Conferene",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\":\"Jay\",\n   \"company\":\"C1\",\n   \"title\":\"Engineer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createSession",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"presenter\":\"Stacey\",\n   \"location\":\"philly\",\n   \"time\":\"10\",\n   \"nameOfPresentation\": \"north\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/createSession",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"createSession"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addAttendee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"sessionPresenter\":\"Stacey\",\n   \"sessionName\":\"north\",\n   \"attendeeName\": \"Bear\",\n   \"attendeeCompany\": \"C1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app/addAttendee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"addAttendee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/app/SessionAttendees/north",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/SessionAttendees/north",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"SessionAttendees",
+						"north"
+					]
+				},
+				"description": "Get Attendees"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
