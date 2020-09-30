@@ -50,11 +50,27 @@ public class AttendeeSessionServiceImp implements AttendeeSessionService {
         List <AttendeeSession> list;
         list = attendeeSessionRepository.findAll();
         System.out.println("Print Value:                " + list.get(0).getSession().getNameOfPresentation());
-        list.stream()
+        List <AttendeeSession> results = list.stream()
                 .filter(a -> a.getSession().getNameOfPresentation().equals(nameOfPresentation))
                 .collect(Collectors.toList());
        // list = attendeeSessionRepository.findByName(nameOfPresentation);
         System.out.println("Print Value:                " + list.get(0).getSession().getNameOfPresentation());
-        return list;
+        return results;
     }
+
+    @Override
+    public List<Session> getAttendeeSchedule(String name){
+
+        List <AttendeeSession> list;
+        list = attendeeSessionRepository.findAttendeeSessionsByAttendee_Name(name);
+        List <Session> sessionlist = new ArrayList<>();
+
+        for(AttendeeSession object : list){
+            Session temp = object.getSession();
+            sessionlist.add(temp);
+        }
+        return sessionlist;
+    }
+
+
 }

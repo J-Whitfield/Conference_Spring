@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface AttendeeSessionRepository extends CrudRepository<AttendeeSession, Long> {
     List<AttendeeSession> findAll();
+    List<AttendeeSession> findAttendeeSessionsByAttendee_Name(String name);
 
 }

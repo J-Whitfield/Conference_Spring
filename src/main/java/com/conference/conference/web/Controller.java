@@ -30,6 +30,8 @@ public class Controller {
     @Autowired
     private AttendeeSessionServiceImp attendeeSessionServiceImp;
 
+
+
     @PostMapping(path= "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Attendee registerAttendee(@RequestBody Attendee attendee){
@@ -55,6 +57,13 @@ public class Controller {
     @ResponseBody
     public List<AttendeeSession> getSessionAttendess(@PathVariable("id") String id){
         List<AttendeeSession> list = attendeeSessionServiceImp.getSessionAttendees(id);
+        return list;
+    }
+
+    @GetMapping(path = "/attendeeSchedule/{id}")
+    @ResponseBody
+    public List<Session> getAttendesSchedule(@PathVariable("id") String name){
+        List<Session> list = attendeeSessionServiceImp.getAttendeeSchedule(name);
         return list;
     }
 
