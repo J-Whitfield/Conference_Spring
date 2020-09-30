@@ -41,7 +41,7 @@ public class Controller {
 
     @PostMapping(path= "/createSession", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Session registerAttendee(@RequestBody Session session){
+    public Session createSession(@RequestBody Session session){
         sessionServiceImp.createSession(session);
         return session;
     }
@@ -53,7 +53,7 @@ public class Controller {
         return request;
     }
 
-    @GetMapping(path = "/SessionAttendees/{id}")
+    @GetMapping(path = "/sessionAttendees/{id}")
     @ResponseBody
     public List<AttendeeSession> getSessionAttendess(@PathVariable("id") String id){
         List<AttendeeSession> list = attendeeSessionServiceImp.getSessionAttendees(id);

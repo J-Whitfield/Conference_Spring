@@ -134,6 +134,27 @@
 				"description": "Get Attendees"
 			},
 			"response": []
+		},
+		{
+			"name": "AttendeeSchedule",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/app/attendeeSchedule/Jamiil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app",
+						"attendeeSchedule",
+						"Jamiil"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

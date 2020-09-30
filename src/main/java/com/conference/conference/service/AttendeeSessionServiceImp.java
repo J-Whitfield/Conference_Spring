@@ -31,16 +31,9 @@ public class AttendeeSessionServiceImp implements AttendeeSessionService {
         Session session = new Session();
         Attendee attendee = new Attendee();
         session = sessionRepository.findByNameOfPresentationAndPresenter(request.getSessionName(),request.getSessionPresenter()).get(0);
-        System.out.println(request.getAttendeeName());
-        System.out.println(request.getAttendeeCompany());
         attendee = attendeeRepository.findByNameAndCompany(request.getAttendeeName(),request.getAttendeeCompany()).get(0);
-        //session.attendeeList.add(attendee);
-        //attendee.sessions.add(session);
-        //attendee.attendeeSessions.add(new AttendeeSession(session));
         AttendeeSession attendeeSession = new AttendeeSession(attendee,session);
         attendeeSessionRepository.save(attendeeSession);
-        // attendeeRepository.save(new Attendee(attendee.getName(), attendee.getTitle(), attendee.getCompany(), new AttendeeSession(session)));
-        // sessionRepository.save(session);
 
     }
 
@@ -49,11 +42,9 @@ public class AttendeeSessionServiceImp implements AttendeeSessionService {
 
         List <AttendeeSession> list;
         list = attendeeSessionRepository.findAll();
-        System.out.println("Print Value:                " + list.get(0).getSession().getNameOfPresentation());
         List <AttendeeSession> results = list.stream()
                 .filter(a -> a.getSession().getNameOfPresentation().equals(nameOfPresentation))
                 .collect(Collectors.toList());
-       // list = attendeeSessionRepository.findByName(nameOfPresentation);
         System.out.println("Print Value:                " + list.get(0).getSession().getNameOfPresentation());
         return results;
     }

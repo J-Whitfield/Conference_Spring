@@ -19,11 +19,6 @@ public class SessionServiceImp implements SessionService {
     @Autowired
     private SessionRepository sessionRepository;
 
-    @Autowired
-    private AttendeeRepository attendeeRepository;
-
-    @Autowired
-    private AttendeeSessionRepository attendeeSessionRepository;
 
     private SecureRandom random = new SecureRandom();
 
