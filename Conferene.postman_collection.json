@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"name\":\"Jay\",\n   \"company\":\"C1\",\n   \"title\":\"Engineer\"\n}",
+					"raw": "{\n   \"name\":\"Bill\",\n   \"company\":\"C1\",\n   \"title\":\"Engineer\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -55,7 +55,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"presenter\":\"Stacey\",\n   \"location\":\"philly\",\n   \"time\":\"10\",\n   \"nameOfPresentation\": \"north\"\n}",
+					"raw": "{\n   \"presenter\":\"Stacey\",\n   \"location\":\"Charlotte\",\n   \"time\":\"11\",\n   \"nameOfPresentation\": \"South\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,7 +91,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"sessionPresenter\":\"Stacey\",\n   \"sessionName\":\"north\",\n   \"attendeeName\": \"Bear\",\n   \"attendeeCompany\": \"C1\"\n}",
+					"raw": "{\n   \"sessionPresenter\":\"Stacey\",\n   \"sessionName\":\"South\",\n   \"attendeeName\": \"Bill\",\n   \"attendeeCompany\": \"C1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -114,12 +114,12 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/app/SessionAttendees/north",
+			"name": "AttendeesForSession",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/SessionAttendees/north",
+					"raw": "http://localhost:8080/app/sessionAttendees/South",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -127,8 +127,8 @@
 					"port": "8080",
 					"path": [
 						"app",
-						"SessionAttendees",
-						"north"
+						"sessionAttendees",
+						"South"
 					]
 				},
 				"description": "Get Attendees"
@@ -141,7 +141,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/attendeeSchedule/Jamiil",
+					"raw": "http://localhost:8080/app/attendeeSchedule/Bill",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -150,7 +150,7 @@
 					"path": [
 						"app",
 						"attendeeSchedule",
-						"Jamiil"
+						"Bill"
 					]
 				}
 			},
